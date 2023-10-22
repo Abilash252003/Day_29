@@ -1,0 +1,42 @@
+///100 Days of RTL///
+
+///Abilash P///
+
+///4:16 decoder in behavioral flow model///
+
+module dec_4_to_16 (A, en, Y);
+
+input  [3:0]A;
+input  en;
+
+output reg[15:0]Y;
+
+always @(*)
+begin
+  if(en==0)
+  begin
+    case({A[3],A[2],A[1],A[0]})
+    4'b0000   : Y = {15'b0, 1'b1};
+    4'b0001   : Y = {14'b0, 1'b1, 1'b0};
+    4'b0010   : Y = {13'b0, 1'b1, 2'b0};
+    4'b0011   : Y = {12'b0, 1'b1, 3'b0};
+    4'b0100   : Y = {11'b0, 1'b1, 4'b0};
+    4'b0101   : Y = {10'b0, 1'b1, 5'b0};
+    4'b0110   : Y = {9'b0,  1'b1, 6'b0};
+    4'b0111   : Y = {8'b0,  1'b1, 7'b0};
+    4'b1000   : Y = {7'b0,  1'b1, 8'b0};
+    4'b1001   : Y = {6'b0,  1'b1, 9'b0};
+    4'b1010   : Y = {5'b0,  1'b1, 10'b0};
+    4'b1011   : Y = {4'b0,  1'b1, 11'b0};
+    4'b1100   : Y = {3'b0,  1'b1, 12'b0};
+    4'b1101   : Y = {2'b0,  1'b1, 13'b0};
+    4'b1110   : Y = {1'b0,  1'b1, 14'b0};
+    4'b1111   : Y = {1'b1,  15'b0};
+    default   : Y = 15'b0;
+    endcase
+  end
+  else
+      Y = 7'bx;
+end
+
+endmodule
