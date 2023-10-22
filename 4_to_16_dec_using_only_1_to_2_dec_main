@@ -1,0 +1,35 @@
+///100 Days of RTL///
+
+///Abilash P///
+
+///4:16 decoder using 1:2 decoder model///
+
+module dec_4_to_16 (A, en, Y);
+
+input  [3:0]A;
+input  en;
+
+output [15:0]Y;
+
+wire p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13;
+
+dec_1_to_2 dec1 (.A(A[3]), .en(en),  .Y1(p1),    .Y0(p0));
+
+dec_1_to_2 dec2 (.A(A[2]), .en(~p0), .Y1(p3),    .Y0(p2));
+dec_1_to_2 dec3 (.A(A[2]), .en(~p1), .Y1(p5),    .Y0(p4));
+
+dec_1_to_2 dec4 (.A(A[1]), .en(~p2), .Y1(p7),    .Y0(p6));
+dec_1_to_2 dec5 (.A(A[1]), .en(~p3), .Y1(p9),    .Y0(p8));
+dec_1_to_2 dec6 (.A(A[1]), .en(~p4), .Y1(p11),   .Y0(p10));
+dec_1_to_2 dec7 (.A(A[1]), .en(~p5), .Y1(p13),   .Y0(p12));
+
+dec_1_to_2 dec8 (.A(A[0]), .en(~p6), .Y1(Y[1]),  .Y0(Y[0]));
+dec_1_to_2 dec9 (.A(A[0]), .en(~p7), .Y1(Y[3]),  .Y0(Y[2]));
+dec_1_to_2 dec10(.A(A[0]), .en(~p8), .Y1(Y[5]),  .Y0(Y[4]));
+dec_1_to_2 dec11(.A(A[0]), .en(~p9), .Y1(Y[7]),  .Y0(Y[6]));
+dec_1_to_2 dec12(.A(A[0]), .en(~p10),.Y1(Y[9]),  .Y0(Y[8]));
+dec_1_to_2 dec13(.A(A[0]), .en(~p11),.Y1(Y[11]), .Y0(Y[10]));
+dec_1_to_2 dec14(.A(A[0]), .en(~p12),.Y1(Y[13]), .Y0(Y[12]));
+dec_1_to_2 dec15(.A(A[0]), .en(~p13),.Y1(Y[15]), .Y0(Y[14]));
+
+endmodule
